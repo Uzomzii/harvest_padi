@@ -63,7 +63,7 @@
     </a>
 
       <div class="flex items-center gap-4">
-        {% if request.session.role == 'farmer' %}
+        {% comment %} {% if request.session.role == 'farmer' %} {% endcomment %}
         <a href="/" class="nav-link {% if request.path == '/' %}nav-link-active{% endif %}">Home</a>
 
         <a href="/ai/yield/" class="nav-link {% if '/ai/yield' in request.path %}nav-link-active{% endif %}">
@@ -92,7 +92,7 @@
         {% elif request.session.role == 'investor' %}
           <a href="/market/investor/" class="hover:underline">{% trans "Investor" %}</a>
           <a href="/energy/" class="hover:underline">{% trans "Energy" %}</a> {% endcomment %}
-        {% endif %} 
+        {% comment %} {% endif %}  {% endcomment %}
 
         {% comment %} <form action="/i18n/setlang/" method="post" class="inline">{% csrf_token %}
           <input type="hidden" name="next" value="{{ request.path }}"/>
