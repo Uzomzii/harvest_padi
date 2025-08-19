@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{{ listing_type|title }}{% endblock %}
+{% block content %}
+<h1 class="text-2xl font-bold mb-4">{{ listing_type|title }}</h1>
+<div class="grid md:grid-cols-3 gap-6">
+  {% for x in items %}
+  <div class="bg-white rounded-2xl shadow overflow-hidden">
+    {% if x.image %}<img src="{{ x.image.url }}" class="w-full h-40 object-cover">{% endif %}
+    <div class="p-4">
+      <div class="font-semibold mb-1">{{ x.title }}</div>
+      <div class="text-xs text-gray-600 mb-2">{{ x.location }} • {{ x.price_text }}</div>
+      <p class="text-sm text-gray-700 line-clamp-3">{{ x.description|default:"" }}</p>
+    </div>
+  </div>
+  {% empty %}
+  <p class="text-gray-600">{% trans "No listings yet." %}</p>
+  {% endfor %}
+</div>
+{% endblock %}

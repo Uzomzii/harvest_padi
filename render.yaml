@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: harvestpadi
+    env: python
+    plan: free
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py collectstatic --noinput
+    startCommand: |
+      gunicorn harvestpadi.wsgi --log-file -
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      # Fill this after first deploy with your URL:
+      # - key: CSRF_TRUSTED_ORIGINS
+      #   value: "https://harvestpadi.onrender.com"

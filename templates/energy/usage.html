@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Log Energy Usage" %}{% endblock %}
+{% block content %}
+<h1 class="text-2xl font-bold mb-4">{% trans "Log Energy Usage" %}</h1>
+<form method="post" class="bg-white p-6 rounded-2xl shadow space-y-4">{% csrf_token %}
+  {{ form.as_p }}
+  <button class="px-4 py-2 bg-black text-white rounded-xl">{% trans "Save" %}</button>
+</form>
+{% endblock %}

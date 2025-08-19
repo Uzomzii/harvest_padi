@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Investor{% endblock %}
+{% block content %}
+<h1 class="text-2xl font-bold mb-4">Investor</h1>
+
+<h2 class="font-semibold mt-2 mb-2">Renewable Energy Opportunities</h2>
+<div class="grid md:grid-cols-2 gap-4">
+  {% for p in energy_products %}
+  <div class="bg-white p-4 rounded-2xl shadow">
+    <div class="font-semibold">{{ p.title }}</div>
+    <div class="text-sm text-gray-600">{{ p.vendor }} • {{ p.product_type }}</div>
+    <div class="text-sm">{{ p.capacity }}</div>
+    <div class="text-sm font-medium">{{ p.price_text }}</div>
+    <p class="text-sm text-gray-700 mt-2">{{ p.description }}</p>
+  </div>
+  {% empty %}
+  <p class="text-gray-600">No products yet.</p>
+  {% endfor %}
+</div>
+
+<h2 class="font-semibold mt-6 mb-2">Farmers</h2>
+{% include "core/farmers.html" with farmers=farmers only %}
+
+<!-- Placeholder: "Create Investment Profile" (form/page can be added later) -->
+<div class="mt-6">
+  <a class="px-3 py-2 bg-black text-white rounded-xl" href="#" onclick="alert('Demo: wire investment profile form here');return false;">
+    Create Investment Profile
+  </a>
+</div>
+{% endblock %}

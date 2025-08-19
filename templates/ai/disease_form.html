@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "AI Disease Detection" %}{% endblock %}
+{% block content %}
+<h1 class="text-2xl font-bold mb-4">{% trans "AI Disease Detection" %}</h1>
+
+<p class="text-gray-600 mb-6">
+  {% trans "Upload a clear photo of your crop leaves to scan for potential diseases." %}
+</p>
+
+<form method="post" enctype="multipart/form-data" class="bg-white p-6 rounded-2xl shadow space-y-4">{% csrf_token %}
+  {{ form.as_p }}
+  <button class="px-4 py-2 bg-black text-white rounded-xl">{% trans "Scan" %}</button>
+</form>
+
+{% if result %}
+<div class="mt-6 bg-white p-6 rounded-2xl shadow grid md:grid-cols-2 gap-4 items-center">
+  <img src="{{ result.image_url }}" alt="Scan" class="rounded-xl border">
+  <div>
+    <div class="text-sm text-gray-600">{% trans "Prediction" %}</div>
+    <div class="text-2xl font-bold">{{ result.label }}</div>
+    <div class="text-sm text-gray-600 mt-2">{% trans "Confidence" %}: {{ result.confidence }}</div>
+    <p class="text-xs text-gray-500 mt-4">{% trans "Demo classifier based on filename keywords, not a real model." %}</p>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

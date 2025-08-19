@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Seller{% endblock %}
+{% block content %}
+<h1 class="text-2xl font-bold mb-4">Seller</h1>
+<a class="px-3 py-2 bg-black text-white rounded-xl" href="/market/seller/listing/new/">Create Input Listing</a>
+
+<h2 class="font-semibold mt-6 mb-2">Recent Input Listings</h2>
+<div class="grid md:grid-cols-2 gap-4">
+  {% for x in inputs %}
+  <div class="bg-white p-4 rounded-2xl shadow">
+    <div class="font-semibold">{{ x.title }}</div>
+    <div class="text-sm text-gray-600">{{ x.location }} • {{ x.price_text }}</div>
+    <p class="text-sm text-gray-700 mt-1">{{ x.description }}</p>
+  </div>
+  {% empty %}
+  <p class="text-gray-600">No inputs yet.</p>
+  {% endfor %}
+</div>
+
+<h2 class="font-semibold mt-6 mb-2">Farmers</h2>
+{% include "core/farmers.html" with farmers=farmers only %}
+{% endblock %}

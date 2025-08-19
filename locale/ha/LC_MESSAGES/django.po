@@ -1,0 +1,106 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: harvestpadi demo\n"
+"Language: ha\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: templates/base.html:17
+msgid "Home"
+msgstr "Gida"
+
+#: templates/base.html:18
+msgid "AI Yield Prediction"
+msgstr "Hasashen Girbi na AI"
+
+#: templates/base.html:19
+msgid "AI Disease Detection"
+msgstr "Gano Cutar Shuka na AI"
+
+#: templates/base.html:20
+msgid "Marketplace"
+msgstr "Kasuwanci"
+
+#: templates/base.html:21
+msgid "Energy"
+msgstr "Makami (Irin Wuta)"
+
+#: templates/base.html:29
+msgid "Onboard"
+msgstr "Shiga Farko"
+
+#: templates/base.html:40
+msgid "Demo build for presentation purposes only"
+msgstr "Nuna samfurin shafi ne kawai don gabatarwa"
+
+#: templates/core/home.html:6
+msgid "Smart farming for smallholders"
+msgstr "Noma mai basira ga kananan manoma"
+
+#: templates/core/home.html:7
+msgid "Connect with buyers, investors, and input providers while using AI to predict yields and detect crop diseases."
+msgstr "Haɗuwa da masu saye, masu zuba jari, da masu sayar da kayan noman tare da amfani da AI don hasashen girbi da gano cututtukan shuka."
+
+#: templates/core/home.html:8
+msgid "You are viewing as"
+msgstr "Kana kallon shafin a matsayin"
+
+#: templates/core/home.html:11
+msgid "Try Yield Prediction"
+msgstr "Gwada Hasashen Girbi"
+
+#: templates/core/home.html:12
+msgid "Browse Marketplace"
+msgstr "Duba Kasuwa"
+
+#: templates/core/home.html:13
+msgid "Energy Tools"
+msgstr "Kayan aikin Makami"
+
+#: templates/core/home.html:18
+msgid "Quick role switch (demo)"
+msgstr "Saurin canjin rawa (demo)"
+
+#: templates/core/home.html:25
+msgid "Use these to preview user journeys without creating accounts."
+msgstr "Yi amfani da waɗannan don dubawa ba tare da ƙirƙirar asusu ba."
+
+#: templates/core/home.html:34
+msgid "Enter crop, seedlings/ha, farm size, soil, irrigation, and location to estimate harvest date, kg yield, and Naira value."
+msgstr "Shigar da amfanin gona, yawan shuka/ha, girman gona, ƙasa, ban ruwa, da wuri don ƙididdige ranar girbi, nauyin girbi a kilo, da ƙimar Naira."
+
+#: templates/core/home.html:38
+msgid "Three lanes: Buyers (RFQs), Investors (offers/loans), Sellers (inputs)."
+msgstr "Rukuni uku: Masu saye (buƙatar farashi), Masu zuba jari (tayin/lamuni), Masu sayarwa (kayan shigarwa)."
+
+#: templates/core/home.html:42
+msgid "Find solar dehydrators/cold storage and log energy usage to track cost savings."
+msgstr "Nemi masu busar rana/ajiyar sanyi kuma rikodin amfani da makamashi don bin sawun ajiya."
+
+#: templates/core/onboarding.html:4
+msgid "Onboarding"
+msgstr "Shiga Farko"
+
+#: templates/core/onboarding.html:7
+msgid "Quick Onboarding (Demo)"
+msgstr "Shiga Farko cikin Sauri (Demo)"
+
+#: templates/core/onboarding.html:11
+msgid "Display name"
+msgstr "Sunan nuni"
+
+#: templates/core/onboarding.html:12
+msgid "e.g., Aisha"
+msgstr "misali, Aisha"
+
+#: templates/core/onboarding.html:15
+msgid "Role"
+msgstr "Rawa"
+
+#: templates/core/onboarding.html:22
+msgid "Continue"
+msgstr "Ci gaba"
+
+#: templates/core/onboarding.html:25
+msgid "Note: This demo uses session-based onboarding—no email/password required."
+msgstr "Lura: Wannan demo yana amfani da zama (session) kawai—ba a buƙatar imel/kalmar sirri."

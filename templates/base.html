@@ -1,0 +1,117 @@
+{% load static %}
+{% load i18n %}
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}HarvestPadi Demo{% endblock %}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="google-translate-customization" content="...">
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en'
+    }, 'google_translate_element');
+  }
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<style>
+.nav-link {
+  padding: .4rem .9rem;
+  border-radius: .6rem;
+  font-weight: 500;
+  color: var(--brand-dark);
+  transition: background .15s ease;
+}
+
+.nav-link:hover {
+  background: var(--brand-green-100);
+  color: var(--brand-green-700);
+}
+
+.nav-link-active {
+  background: #16A34A;   /* brand green */
+  color: #fff;           /* white text */
+  font-weight: 600;
+}
+.nav-link-active:hover {
+  background: #15803D;   /* darker green on hover */
+  color: #fff;
+}
+
+</style>
+<style>
+  #google_translate_element select{
+    @supports not (color: var(--brand-green)){}
+    border:1px solid #d1d5db; border-radius:.6rem; padding:.35rem .6rem;
+  }
+  .goog-logo-link, .goog-te-gadget span { display:none !important; } /* hide "Powered by" line */
+</style>
+
+</head>
+<body class="bg-gray-50 text-gray-900">
+  <nav class="bg-white border-b sticky top-0 z-10">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2">
+      <!-- SVG is ideal -->
+      <img src="{% static 'img/HARVESTPADI LOGO.jpg' %}" alt="HarvestPadi" class="h-7 w-auto" />
+      <!-- keep visual text if you want it visible next to the logo: -->
+      <!-- <span class="text-xl font-bold">HarvestPadi</span> -->
+      <!-- or hide text for screen readers only: -->
+      <!-- <span class="sr-only">HarvestPadi</span> -->
+    </a>
+
+      <div class="flex items-center gap-4">
+        {% if request.session.role == 'farmer' %}
+        <a href="/" class="nav-link {% if request.path == '/' %}nav-link-active{% endif %}">Home</a>
+
+        <a href="/ai/yield/" class="nav-link {% if '/ai/yield' in request.path %}nav-link-active{% endif %}">
+          AI Yield Prediction
+        </a>
+
+        <a href="/ai/disease/" class="nav-link {% if '/ai/disease' in request.path %}nav-link-active{% endif %}">
+          AI Disease Detection
+        </a>
+
+        <a href="/energy/" class="nav-link {% if '/energy' in request.path %}nav-link-active{% endif %}">
+          Energy
+        </a>
+
+        <a href="https://harvestpadi.vercel.app/" class="nav-link {% if '/market' in request.path %}nav-link-active{% endif %}">
+          Marketplace
+        </a>
+
+
+        {% comment %} {% elif request.session.role == 'buyer' %}
+          <a href="/market/buyer/" class="hover:underline">{% trans "Buyer" %}</a>
+
+        {% elif request.session.role == 'seller' %}
+          <a href="/market/seller/" class="hover:underline">{% trans "Seller" %}</a>
+
+        {% elif request.session.role == 'investor' %}
+          <a href="/market/investor/" class="hover:underline">{% trans "Investor" %}</a>
+          <a href="/energy/" class="hover:underline">{% trans "Energy" %}</a> {% endcomment %}
+        {% endif %} 
+
+        {% comment %} <form action="/i18n/setlang/" method="post" class="inline">{% csrf_token %}
+          <input type="hidden" name="next" value="{{ request.path }}"/>
+          <select name="language" class="border rounded px-2 py-1" onchange="this.form.submit()">
+            <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
+            <option value="ha" {% if LANGUAGE_CODE == 'ha' %}selected{% endif %}>Hausa</option>
+          </select>
+        </form> {% endcomment %}
+         <!-- Google Translate widget here -->
+        <div id="google_translate_element"></div>
+
+        {% comment %} <a href="/onboarding/" class="px-3 py-1 bg-black text-white rounded-lg">{% trans "Onboard" %}</a> {% endcomment %}
+      </div>
+    </div>
+  </nav>
+  <main class="max-w-6xl mx-auto px-4 py-6">
+        {% block content %}{% endblock %}
+  </main>
+  <footer class="text-center text-sm text-gray-500 py-10">
+  </footer>
+</body>
+</html>
