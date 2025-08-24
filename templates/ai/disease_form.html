@@ -1,27 +1,76 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% block title %}{% trans "AI Disease Detection" %}{% endblock %}
-{% block content %}
-<h1 class="text-2xl font-bold mb-4">{% trans "AI Disease Detection" %}</h1>
 
+{% block content %}
+<h1 class="text-2xl font-bold mb-2">{% trans "AI Disease Detection" %}</h1>
 <p class="text-gray-600 mb-6">
-  {% trans "Upload a clear photo of your crop leaves to scan for potential diseases." %}
+  {% trans "Upload a clear photo of your crop leaves to scan for potential diseases. This tool provides quick, AI-powered insights to help you act early." %}
 </p>
 
-<form method="post" enctype="multipart/form-data" class="bg-white p-6 rounded-2xl shadow space-y-4">{% csrf_token %}
-  {{ form.as_p }}
-  <button class="px-4 py-2 bg-black text-white rounded-xl">{% trans "Scan" %}</button>
-</form>
-
 {% if result %}
-<div class="mt-6 bg-white p-6 rounded-2xl shadow grid md:grid-cols-2 gap-4 items-center">
-  <img src="{{ result.image_url }}" alt="Scan" class="rounded-xl border">
-  <div>
-    <div class="text-sm text-gray-600">{% trans "Prediction" %}</div>
-    <div class="text-2xl font-bold">{{ result.label }}</div>
-    <div class="text-sm text-gray-600 mt-2">{% trans "Confidence" %}: {{ result.confidence }}</div>
-    <p class="text-xs text-gray-500 mt-4">{% trans "Demo classifier based on filename keywords, not a real model." %}</p>
+  <!-- Result Card -->
+  <div class="bg-green-50 rounded-2xl shadow p-4 md:p-6">
+    <div class="grid md:grid-cols-2 gap-4 md:gap-6 items-start">
+      <!-- Image -->
+      <div>
+        <img src="{{ result.image_url }}" alt="Scan" class="rounded-xl border w-full object-cover">
+      </div>
+
+      <!-- Details -->
+      <div>
+        <div class="flex items-center gap-2 mb-2">
+          {% if result.label != 'Healthy' %}
+            <span class="text-yellow-500 text-xl">⚠️</span>
+          {% else %}
+            <span class="text-green-600 text-xl">✅</span>
+          {% endif %}
+          <h2 class="text-xl font-semibold">
+            {{ result.label }} {% trans "Detected" %}
+          </h2>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3 text-sm mb-4">
+          <div>
+            <span class="text-gray-500">{% trans "Confidence" %}:</span>
+            <span class="font-semibold">{{ result.confidence_pct }}%</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-gray-500">{% trans "Severity" %}:</span>
+            <span class="px-2 py-0.5 rounded {{ result.severity_bg_cls }} {{ result.severity_text_cls }} font-semibold">
+              {{ result.severity_name }}
+            </span>
+          </div>
+        </div>
+
+        <div class="mb-2 font-semibold">{% trans "Recommended Actions" %}:</div>
+        <ul class="space-y-2 text-sm">
+          {% for tip in result.actions %}
+            <li class="flex items-start gap-2">
+              <span class="text-green-600 mt-0.5">✔</span>
+              <span>{{ tip }}</span>
+            </li>
+          {% endfor %}
+        </ul>
+
+        <div class="mt-6">
+          <a href="{% url 'disease_form' %}" class="px-4 py-2 bg-green-600 text-white rounded-xl hover:bg-green-700">
+            {% trans "Scan Another Image" %}
+          </a>
+        </div>
+        <p class="text-xs text-gray-500 mt-3">
+          {% trans "Note: This is a demo classifier based on filename keywords, not a real diagnostic model." %}
+        </p>
+      </div>
+    </div>
   </div>
-</div>
+{% else %}
+  <!-- Upload Form -->
+  <form method="post" enctype="multipart/form-data" class="bg-white p-6 rounded-2xl shadow space-y-4">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="px-4 py-2 bg-green-600 text-white rounded-xl hover:bg-green-700">{% trans "Scan" %}</button>
+  </form>
 {% endif %}
+
 {% endblock %}

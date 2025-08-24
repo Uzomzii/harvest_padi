@@ -2,11 +2,9 @@
 from django.shortcuts import render, redirect
 from django.db.models import Sum
 from datetime import date, timedelta
-import json
-
-from .models import RenewableProduct, EnergyUsage
-from .forms import EnergyUsageForm
-from core.utils import get_role
+from .models import RenewableProduct, EnergyUsage, EnergyUnit
+from .forms import EnergyUsageForm, EnergyUnitForm
+from core.utils import get_role, role_required
 
 
 def energy_home(request):
@@ -86,3 +84,14 @@ def energy_usage(request):
     else:
         form = EnergyUsageForm()
     return render(request, 'energy/usage.html', {'form': form})
+
+
+def energy_unit_new(request):
+    if request.method == "POST":
+        form = EnergyUnitForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('energy_home')
+    else:
+        form = EnergyUnitForm()
+    return render(request, 'energy/unit_form.html', {"form": form})
