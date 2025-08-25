@@ -29,6 +29,11 @@ NIGERIA_STATES = [
     ('FCT','FCT (Abuja)'),
 ]
 
+FERTILIZER_CHOICES = [
+    ('synthetic', 'Synthetic (Chemical) Fertilizers'),
+    ('mixed', 'Synthetic + Organic (Integrated)'),
+]
+
 ORGANIC_FERTILIZERS = [
     ('compost','Compost'),
     ('vermicompost','Vermicompost'),
@@ -81,9 +86,10 @@ class YieldForm(forms.Form):
         widget=forms.Select(attrs={'class': BORDER})
     )
 
-    # ▼ NEW: organic fertilizers dropdown
     fertilizer = forms.ChoiceField(
-        choices=[('', 'Select Organic Fertilizer')] + ORGANIC_FERTILIZERS,
+        choices=[('', 'Select Fertilizer Type')] 
+                + FERTILIZER_CHOICES 
+                + ORGANIC_FERTILIZERS,
         required=False,
         widget=forms.Select(attrs={'class': BORDER})
     )
